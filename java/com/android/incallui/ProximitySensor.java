@@ -24,6 +24,9 @@ import android.os.Trace;
 import android.support.annotation.NonNull;
 import android.telecom.CallAudioState;
 import android.view.Display;
+import android.os.Handler;
+import android.provider.Settings;
+import com.android.incallui.call.TelecomAdapter;
 import com.android.dialer.common.LogUtil;
 import com.android.incallui.InCallPresenter.InCallState;
 import com.android.incallui.InCallPresenter.InCallStateListener;
@@ -31,7 +34,7 @@ import com.android.incallui.audiomode.AudioModeProvider;
 import com.android.incallui.audiomode.AudioModeProvider.AudioModeListener;
 import com.android.incallui.call.CallList;
 import com.android.incallui.call.DialerCall;
-
+import android.telecom.TelecomManager;
 /**
  * Class manages the proximity sensor for the in-call UI. We enable the proximity sensor while the
  * user in a phone call. The Proximity sensor turns off the touchscreen and display when the user is
@@ -40,7 +43,7 @@ import com.android.incallui.call.DialerCall;
  * and disabled. Most of that state is fed into this class through public methods.
  */
 public class ProximitySensor
-    implements AccelerometerListener.OrientationListener, InCallStateListener, AudioModeListener {
+    implements AccelerometerListener.ChangeListener, InCallStateListener, AudioModeListener {
 
   private static final String TAG = ProximitySensor.class.getSimpleName();
 
@@ -94,9 +97,14 @@ public class ProximitySensor
 
   /** Called to identify when the device is laid down flat. */
   @Override
-  public void orientationChanged(int orientation) {
+  public void onOrientationChanged(int orientation) {
     this.orientation = orientation;
     updateProximitySensorMode();
+  }
+
+  @Override
+  public void onDeviceFlipped(boolean faceDown) {
+      // ignored
   }
 
   /** Called to keep track of the overall UI state. */
