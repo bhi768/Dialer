@@ -728,4 +728,15 @@
   <!-- Name of launcher shortcut for the new UI main activity.
        TODO(38502365): Remove this once we're ready to launch the new UI. -->
   <string translatable="false" name="nui_shortcut_name">Phone NUI</string>
+
+    <string name="call_recording_category_key" translatable="false">call_recording_category</string>
+    <string name="call_recording_category_title">Call recording</string>
+    <string name="call_recording_format_key" translatable="false">call_recording_format</string>
+    <string name="call_recording_format">Audio format</string>
+    <string name="wb_amr_format" translatable="false">AMR-WB</string>
+    <string name="aac_format" translatable="false">AAC</string>
+
+    <string name="call_via">Call via</string>
+    <string name="call_via_dialog_title">Call via\u2026</string>
+
 </resources>
