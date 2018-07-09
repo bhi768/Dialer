@@ -205,4 +205,11 @@
   <!-- Text for bubble return-to-call button -->
   <string name="bubble_return_to_call">Back to call</string>
 
+    <string name="call_recording_failed_message">Failed to start call recording</string>
+    <string name="call_recording_file_location">Saved call recording to <xliff:g id="filename">%s</xliff:g></string>
+    <string name="onscreenCallRecordText">Record call</string>
+    <string name="onscreenCallRecordingText">Recording call - <xliff:g id="duration" example="00:10">%1$s</xliff:g></string>
+    <string name="onscreenStopCallRecordText">Stop recording</string>
+    <string name="recording_time_text">Recording</string>
+
 </resources>

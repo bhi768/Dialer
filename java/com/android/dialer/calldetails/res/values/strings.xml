@@ -55,4 +55,11 @@
 
   <!-- A fallback string for the assisted dialing header incase parsing failes.. [CHAR LIMIT=NONE] -->
   <string name="assisted_dialing_country_code_entry_failure">Assisted dialing was used</string>
+
+   <plurals name="play_recordings">
+        <item quantity="one">Play recording</item>
+        <item quantity="other">Play recordings</item>
+    </plurals>
+    <string name="call_playback_no_app_found_toast">No app could be found for playback of the selected recording.</string>
+
 </resources>
