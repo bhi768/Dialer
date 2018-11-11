@@ -43,7 +43,6 @@
     android:key="@string/dtmf_tone_length_preference_key"
     android:title="@string/dtmf_tone_length_title"/>
 
-
   <PreferenceCategory
     android:key="@string/incall_category_key"
     android:title="@string/incall_category_title">

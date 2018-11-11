@@ -368,6 +368,9 @@ public class CallButtonPresenter
       } else {
         startCallRecordingOrAskForPermission();
       }
+       if(!recorder.isRecording()) {
+        startCallRecordingOrAskForPermission();
+       }
     } else {
       if (recorder.isRecording()) {
         recorder.finishRecording();

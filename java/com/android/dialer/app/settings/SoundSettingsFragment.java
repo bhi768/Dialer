@@ -120,6 +120,7 @@ public class SoundSettingsFragment extends PreferenceFragment
       ps.removePreference(inCallVibrateCallWaiting);
       ps.removePreference(inCallVibrateHangup);
       ps.removePreference(inCallVibrate45Secs);
+      getPreferenceScreen().removePreference(vibrateWhenRinging);
       vibrateWhenRinging = null;
     }
 
