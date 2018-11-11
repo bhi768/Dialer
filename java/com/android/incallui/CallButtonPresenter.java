@@ -293,6 +293,55 @@ public class CallButtonPresenter
   }
 
   @Override
+  public void callRecordClicked(boolean checked) {
+    CallRecorder recorder = CallRecorder.getInstance();
+    if (checked) {
+      final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+      boolean warningPresented = prefs.getBoolean(KEY_RECORDING_WARNING_PRESENTED, false);
+      if (!warningPresented) {
+        new AlertDialog.Builder(getActivity())
+            .setTitle(R.string.recording_warning_title)
+            .setMessage(R.string.recording_warning_text)
+            .setPositiveButton(R.string.onscreenCallRecordText, (dialog, which) -> {
+              prefs.edit()
+                  .putBoolean(KEY_RECORDING_WARNING_PRESENTED, true)
+                  .apply();
+              startCallRecordingOrAskForPermission();
+            })
+            .setNegativeButton(android.R.string.cancel, null)
+            .show();
+      } else {
+        startCallRecordingOrAskForPermission();
+      }
+       if(!recorder.isRecording()) {
+        startCallRecordingOrAskForPermission();
+       }
+    } else {
+      if (recorder.isRecording()) {
+        recorder.finishRecording();
+      }
+    }
+  }
+
+  private void startCallRecordingOrAskForPermission() {
+    if (hasAllPermissions(CallRecorder.REQUIRED_PERMISSIONS)) {
+      CallRecorder recorder = CallRecorder.getInstance();
+      recorder.startRecording(call.getNumber(), call.getCreationTimeMillis());
+    } else {
+      inCallButtonUi.requestCallRecordingPermissions(CallRecorder.REQUIRED_PERMISSIONS);
+    }
+  }
+
+  private boolean hasAllPermissions(String[] permissions) {
+    for (String p : permissions) {
+      if (context.checkSelfPermission(p) != PackageManager.PERMISSION_GRANTED) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  @Override
   public void changeToVideoClicked() {
     LogUtil.enterBlock("CallButtonPresenter.changeToVideoClicked");
     Logger.get(context)
