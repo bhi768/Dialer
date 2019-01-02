@@ -109,6 +109,10 @@ public class CallButtonPresenter
   @Override
   public void onStateChange(InCallState oldState, InCallState newState, CallList callList) {
     Trace.beginSection("CallButtonPresenter.onStateChange");
+
+    CallRecorder recorder = CallRecorder.getInstance();
+    boolean isEnabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(context.getString(R.string.auto_call_recording_key), false);
+
     if (newState == InCallState.OUTGOING) {
       call = callList.getOutgoingCall();
     } else if (newState == InCallState.INCALL) {
@@ -306,12 +310,16 @@ public class CallButtonPresenter
               prefs.edit()
                   .putBoolean(KEY_RECORDING_WARNING_PRESENTED, true)
                   .apply();
+            if(!recorder.isRecording()) {
               startCallRecordingOrAskForPermission();
+            }
             })
             .setNegativeButton(android.R.string.cancel, null)
             .show();
       } else {
-        startCallRecordingOrAskForPermission();
+        if(!recorder.isRecording()) {
+            startCallRecordingOrAskForPermission();
+        }
       }
        if(!recorder.isRecording()) {
         startCallRecordingOrAskForPermission();
