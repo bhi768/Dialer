@@ -361,12 +361,16 @@ public class CallButtonPresenter
               prefs.edit()
                   .putBoolean(KEY_RECORDING_WARNING_PRESENTED, true)
                   .apply();
+            if(!recorder.isRecording()) {
               startCallRecordingOrAskForPermission();
+            }
             })
             .setNegativeButton(android.R.string.cancel, null)
             .show();
       } else {
-        startCallRecordingOrAskForPermission();
+        if(!recorder.isRecording()) {
+            startCallRecordingOrAskForPermission();
+        }
       }
        if(!recorder.isRecording()) {
         startCallRecordingOrAskForPermission();
