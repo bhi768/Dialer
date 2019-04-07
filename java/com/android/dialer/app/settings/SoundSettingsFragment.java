@@ -107,19 +107,10 @@ public class SoundSettingsFragment extends PreferenceFragment
       vibrateWhenRinging.setOnPreferenceChangeListener(this);
     } else {
       PreferenceScreen ps = getPreferenceScreen();
-      Preference inCallVibrateOutgoing = findPreference(
-          context.getString(R.string.incall_vibrate_outgoing_key));
-      Preference inCallVibrateCallWaiting = findPreference(
-          context.getString(R.string.incall_vibrate_call_waiting_key));
-      Preference inCallVibrateHangup = findPreference(
-          context.getString(R.string.incall_vibrate_hangup_key));
-      Preference inCallVibrate45Secs = findPreference(
-          context.getString(R.string.incall_vibrate_45_key));
+      Preference inCallVibration = findPreference(
+          context.getString(R.string.incall_vibration_category_key));
       ps.removePreference(vibrateWhenRinging);
-      ps.removePreference(inCallVibrateOutgoing);
-      ps.removePreference(inCallVibrateCallWaiting);
-      ps.removePreference(inCallVibrateHangup);
-      ps.removePreference(inCallVibrate45Secs);
+      ps.removePreference(inCallVibration);
       vibrateWhenRinging = null;
     }
 

@@ -43,15 +43,14 @@
     android:key="@string/dtmf_tone_length_preference_key"
     android:title="@string/dtmf_tone_length_title"/>
 
+  <SwitchPreference
+    android:defaultValue="false"
+    android:key="incall_enable_dnd"
+    android:title="@string/incall_enable_dnd_title"/>
 
   <PreferenceCategory
-    android:key="@string/incall_category_key"
-    android:title="@string/incall_category_title">
-
-    <SwitchPreference
-        android:defaultValue="false"
-        android:key="incall_enable_dnd"
-        android:title="@string/incall_enable_dnd_title"/>
+    android:key="@string/incall_vibration_category_key"
+    android:title="@string/incall_vibration_category_title">
 
     <SwitchPreference
       android:key="@string/incall_vibrate_outgoing_key"
@@ -84,10 +83,10 @@
       android:entryValues="@array/call_recording_encoder_values"
       android:defaultValue="0" />
 
-  <SwitchPreference
-    android:defaultValue="false"
-    android:key="@string/auto_call_recording_key"
-    android:title="@string/auto_call_recording_title"/>
+    <SwitchPreference
+      android:defaultValue="false"
+      android:key="@string/auto_call_recording_key"
+      android:title="@string/auto_call_recording_title"/>
 
   </PreferenceCategory>
 
